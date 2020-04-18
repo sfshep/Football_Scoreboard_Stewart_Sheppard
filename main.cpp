@@ -87,11 +87,13 @@ class Scoreboard
         cout << "Scoreboard Internal\n";
         cout << "********************" << "\n" << endl;
         cout << "Team 1 Name: " << team1.getName() << endl;
+        cout << "Team 1 Coach: "  << team1.getCoach_name() << endl;
         cout << "Team 1 Score: " << team1.getScore() << "\n" << endl;
         cout << "--------------------" << endl;
         cout << "Quarter: " << quarter << endl; 
         cout << "--------------------" << endl;
         cout << "Team 2 Name: " << team2.getName() << endl;
+        cout << "Team 2 Coach: "  << team2.getCoach_name() << endl;
         cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
 
         //dealing with Boolean data
@@ -140,6 +142,8 @@ void scoreboardControls()
         cout << "C. Update Team 2 Score" << endl;
         cout << "D. Update Team 2 Name" << endl;
         cout << "E. Update Quarter" << endl;
+        cout << "F. Update Team 1 Coach's Name" << endl;
+        cout << "G. Update Team 2 Coach's Name" << endl;
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
@@ -191,7 +195,26 @@ void scoreboardControls()
           cout << "\nUpdating Quarter..." << s.getQuarter() << endl;
           sleep(3); // 3 second pause
         }
+        
+        else if (decision == 'f' || decision == 'F')
+        {
+          cout << "Team 1 update Coach Name. \n";
+          cout << "What is the Coach's Name? > ";
+          cin >> newName;
+          tOneMain.setCoach_name(newName);
+          cout << "\nUpdating Coach's name for Team1 to..." << tOneMain.getCoach_name() << endl;
+          sleep(3); // 3 second pause
+        }
 
+        else if (decision == 'g' || decision == 'G')
+        {
+          cout << "Team 2 update Coach Name. \n";
+          cout << "What is the Coach's Name? > ";
+          cin >> newName;
+          tTwoMain.setCoach_name(newName);
+          cout << "\nUpdating Coach's name for Team1 to..." << tTwoMain.getCoach_name() << endl;
+          sleep(3); // 3 second pause
+        }
 
         
         
