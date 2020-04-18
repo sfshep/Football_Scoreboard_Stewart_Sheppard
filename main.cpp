@@ -89,15 +89,17 @@ class Scoreboard
         cout << "Team 1 Name: " << team1.getName() << endl;
         cout << "Team 1 Coach: "  << team1.getCoach_name() << endl;
         cout << "Team 1 Score: " << team1.getScore() << "\n" << endl;
+        cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
         cout << "--------------------" << endl;
         cout << "Quarter: " << quarter << endl; 
         cout << "--------------------" << endl;
         cout << "Team 2 Name: " << team2.getName() << endl;
         cout << "Team 2 Coach: "  << team2.getCoach_name() << endl;
+        cout << "Team 2 City: " << team2.getHome_city() << "\n" << endl;
         cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
 
         //dealing with Boolean data
-        if(1 == true)
+        if(poss == true)
         {
            cout << "--------------------" << endl;
           cout << "Home team has the ball" << endl; 
@@ -122,6 +124,7 @@ void scoreboardControls()
   int newScore = 0;
   string newName = "";
   int updateQuarter = 0;
+  bool updatePossession;
 
   s.setTeam1(tOneMain);
   s.setTeam2(tTwoMain);
@@ -144,6 +147,9 @@ void scoreboardControls()
         cout << "E. Update Quarter" << endl;
         cout << "F. Update Team 1 Coach's Name" << endl;
         cout << "G. Update Team 2 Coach's Name" << endl;
+        cout << "H. Update Team 1 Home City Name" << endl;
+        cout << "I. Update Team 2 Home City Name" << endl;
+        cout << "J. Change Ball Possession" << endl;
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
@@ -216,7 +222,35 @@ void scoreboardControls()
           sleep(3); // 3 second pause
         }
 
+        else if (decision == 'h' || decision == 'H')
+        {
+          cout << "Team 1 update Home City Name. \n";
+          cout << "What is the City's Name? > ";
+          cin >> newName;
+          tOneMain.setHome_city(newName);
+          cout << "\nUpdating City's Name for Team1 to..." << tOneMain.getHome_city() << endl;
+          sleep(3); // 3 second pauseSn
+        }
+
+        else if (decision == 'i' || decision == 'H')
+        {
+          cout << "Team 2 update Home City Name. \n";
+          cout << "What is the City's Name? > ";
+          cin >> newName;
+          tTwoMain.setHome_city(newName);
+          cout << "\nUpdating City's Name for Team2 to..." << tTwoMain.getHome_city() << endl;
+          sleep(3); // 3 second pause
+        }
         
+        else if (decision == 'j' || decision == 'J')
+        {
+          cout << "Change possession of ball. \n";
+          cout << "Enter \"true\" for Home or \"false\" for Visitor. \n";
+          cin >> updatePossession;
+          s.setPoss(updatePossession);
+          cout << "\nUpdating Ball Possession..." << s.getPoss() << endl;
+          sleep(3); // 3 second pause
+        }
         
         
         
