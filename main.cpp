@@ -95,7 +95,7 @@ class Scoreboard
         cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
 
         //dealing with Boolean data
-        if(2 == true)
+        if(1 == true)
         {
            cout << "--------------------" << endl;
           cout << "Home team has the ball" << endl; 
