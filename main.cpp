@@ -102,10 +102,23 @@ class Scoreboard
         cout << "Down: "<< down << endl;
         cout << "Yards To Go: " << yards << endl;
         cout << "Possession: "; 
-        if(poss == true)
+        if(poss == true)// Ball possession status.
               cout << "\n Home has the ball. " << endl;
         else
               cout << "\n Visitor has the ball." << endl;
+        cout << "Team 1 ";// Team1 "Home" status
+        if (team1.getHome_status() == true)
+              cout << "Status: HOME  " << endl;
+        else
+              cout << "Status: VISITOR"  << endl;
+        cout << "Team 2 "; // Team2 "Home" status
+        if (team2.getHome_status() == true)
+              cout << "Status: HOME  " << endl;
+        else
+              cout << "Status: VISITOR" << endl; 
+        
+        
+
         
 
     }
@@ -124,6 +137,7 @@ void scoreboardControls()
   int timeOuts;
   int downs;
   int yards;
+  bool homeStatus;
 
   s.setTeam1(tOneMain);
   s.setTeam2(tTwoMain);
@@ -153,6 +167,9 @@ void scoreboardControls()
         cout << "L. Update Team 2 Timeouts" << endl;
         cout << "M. Update Down" << endl;
         cout << "N. Update Yards" << endl;
+        cout << "O. Select \"Home\" status for Team 1" << endl;
+        cout << "P. Select \"Home\" status for Team 2" << endl;
+
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
@@ -294,6 +311,33 @@ void scoreboardControls()
           sleep(3); // 3 second pause
         }
         
+        else if (decision == 'o' || decision == 'O')
+        {
+          cout <<"Home Team Status \n";
+          cout << "Team 1 is the HOME team? (0 = yes, 1 - no).\n";
+          cin >> homeStatus;
+              if(homeStatus == 0)
+              tOneMain.setHome_status(true);
+                          
+              else
+              tOneMain.setHome_status(false);
+                           
+          sleep(3); // 3 second pause
+        }
+
+        else if (decision == 'p' || decision == 'P')
+        {
+          cout <<"Home Team Status \n";
+          cout << "Team 2 is the HOME team? (0 = yes, 1 - no).\n";
+          cin >> homeStatus;
+              if(homeStatus == 0)
+              tTwoMain.setHome_status(true);
+                          
+              else
+              tTwoMain.setHome_status(false);
+                           
+          sleep(3); // 3 second pause
+        }
         
         
         
