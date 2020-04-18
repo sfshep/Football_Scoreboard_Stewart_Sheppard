@@ -119,6 +119,7 @@ void scoreboardControls()
   char decision= '\0';
   int newScore = 0;
   string newName = "";
+  int updateQuarter = 0;
 
   s.setTeam1(tOneMain);
   s.setTeam2(tTwoMain);
@@ -138,6 +139,7 @@ void scoreboardControls()
         cout << "B. Update Team 1 Name" << endl; 
         cout << "C. Update Team 2 Score" << endl;
         cout << "D. Update Team 2 Name" << endl;
+        cout << "E. Update Quarter" << endl;
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
@@ -179,7 +181,24 @@ void scoreboardControls()
           cout << "\nUpdating new name for Team2 to..." << tTwoMain.getName() << endl;
           sleep(3); // 3 second pause
         }
-          else if(decision == 'x' || decision == 'X')
+        
+        else if (decision == 'e'|| decision == 'E')
+        {
+          cout << "Update the Quarter. \n";
+          cout << "What Quarter is it? > ";
+          cin >> updateQuarter;
+          s.setQuarter(updateQuarter);
+          cout << "\nUpdating Quarter..." << s.getQuarter() << endl;
+          sleep(3); // 3 second pause
+        }
+
+
+        
+        
+        
+        
+        
+        else if(decision == 'x' || decision == 'X')
           {
             cout << "\nEXIT.  GO TWU PIONEERS!  STILL UNDEFEATED!!" << endl;
           }
