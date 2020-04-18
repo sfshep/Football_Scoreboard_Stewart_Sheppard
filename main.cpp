@@ -87,16 +87,20 @@ class Scoreboard
         cout << "Scoreboard Internal\n";
         cout << "********************" << "\n" << endl;
         cout << "Team 1 Name: " << team1.getName() << endl;
+        cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
         cout << "Team 1 Coach: "  << team1.getCoach_name() << endl;
         cout << "Team 1 Score: " << team1.getScore() << "\n" << endl;
-        cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
+        cout << "Team 1 Timeouts: " << team1.getTimeout_count() << "\n";
         cout << "--------------------" << endl;
         cout << "Quarter: " << quarter << endl; 
         cout << "--------------------" << endl;
         cout << "Team 2 Name: " << team2.getName() << endl;
-        cout << "Team 2 Coach: "  << team2.getCoach_name() << endl;
         cout << "Team 2 City: " << team2.getHome_city() << "\n" << endl;
+        cout << "Team 2 Coach: "  << team2.getCoach_name() << endl;
         cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
+        cout << "Team 2 Timeouts: " << team2.getTimeout_count() << "\n";
+        cout << "Down: "<< down << endl;
+        cout << "Yards To Go: " << yards << endl;
 
         //dealing with Boolean data
         if(poss == true)
@@ -125,6 +129,9 @@ void scoreboardControls()
   string newName = "";
   int updateQuarter = 0;
   bool updatePossession;
+  int timeOuts;
+  int downs;
+  int yards;
 
   s.setTeam1(tOneMain);
   s.setTeam2(tTwoMain);
@@ -150,6 +157,10 @@ void scoreboardControls()
         cout << "H. Update Team 1 Home City Name" << endl;
         cout << "I. Update Team 2 Home City Name" << endl;
         cout << "J. Change Ball Possession" << endl;
+        cout << "K. Update Team 1 Timeouts" << endl;
+        cout << "L. Update Team 2 Timeouts" << endl;
+        cout << "M. Update Down" << endl;
+        cout << "N. Update Yards" << endl;
         cout << "X. To Exit" << endl; 
         cin >> decision; 
 
@@ -249,6 +260,37 @@ void scoreboardControls()
           cin >> updatePossession;
           s.setPoss(updatePossession);
           cout << "\nUpdating Ball Possession..." << s.getPoss() << endl;
+          sleep(3); // 3 second pause
+        }
+
+        else if (decision == 'k' || decision == 'K')
+        {
+          cout << "Team 1 update number of Timeouts. \n";
+          cout << "How many timeouts are left? > ";
+          cin >> timeOuts;
+          tOneMain.settimeout_count(timeOuts);
+          cout << "\nUpdating number of Timeouts for Team1 to..." << tOneMain.getTimeout_count() << endl;
+          sleep(3); // 3 second pauseSn
+        }
+
+        else if (decision == 'l' || decision == 'L')
+        {
+          cout << "Team 2 update number of Timeouts. \n";
+          cout << "How many timeouts are left? > ";
+          cin >> timeOuts;
+          tTwoMain.settimeout_count(timeOuts);
+          cout << "\nUpdating number of Timeouts for Team2 to..." << tTwoMain.getTimeout_count() << endl;
+          sleep(3); // 3 second pause
+        }
+
+        
+        else if (decision == 'n'|| decision == 'N')
+        {
+          cout << "Update the Yards \"To Go\". \n";
+          cout << "Enter number of Yards\"To Go\"  > ";
+          cin >> yards;
+          s.setYards(yards);
+          cout << "\nUpdating Quarter..." << s.getYards() << endl;
           sleep(3); // 3 second pause
         }
         
