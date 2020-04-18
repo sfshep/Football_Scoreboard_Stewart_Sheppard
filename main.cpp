@@ -8,7 +8,18 @@ Program that keeps track of various objects and variables in a Football Scoreboa
 #include <iostream>
 #include <unistd.h> //for sleep command
 #include <string>
+#include <colormod.h>
 using namespace std;
+
+Color::Modifier red(Color::FG_RED);
+Color::Modifier blue(Color::FG_BLUE);
+Color::Modifier green(Color::FG_GREEN);
+Color::Modifier redgb(Color::BG_RED);
+Color::Modifier greenbg(Color::BG_GREEN);
+Color::Modifier bluebg(Color::BG_BLUE);
+Color::Modifier def(Color::FG_DEFAULT);
+
+
 
 class Team
 {
@@ -106,16 +117,18 @@ class Scoreboard
               cout << "\n Home has the ball. " << endl;
         else
               cout << "\n Visitor has the ball." << endl;
-        cout << "Team 1 ";// Team1 "Home" status
+        cout << "**************" << endl;
         if (team1.getHome_status() == true)
-              cout << "Status: HOME  " << endl;
+              {
+                cout << "Team 1 Status: HOME  " << endl;
+                cout << "Team 2 Status: VISITOR "<< endl;
+              }
         else
-              cout << "Status: VISITOR"  << endl;
-        cout << "Team 2 "; // Team2 "Home" status
-        if (team2.getHome_status() == true)
-              cout << "Status: HOME  " << endl;
-        else
-              cout << "Status: VISITOR" << endl; 
+              {
+                cout << "Team 1 Status: VISITOR " << endl;
+                cout << "Team 2 Status: HOME " << endl;
+              }
+        cout << "**************" << endl;
         
         
 
@@ -167,8 +180,8 @@ void scoreboardControls()
         cout << "L. Update Team 2 Timeouts" << endl;
         cout << "M. Update Down" << endl;
         cout << "N. Update Yards" << endl;
-        cout << "O. Select \"Home\" status for Team 1" << endl;
-        cout << "P. Select \"Home\" status for Team 2" << endl;
+        cout << "O. Select \"Home\" status" << endl;
+       
 
         cout << "X. To Exit" << endl; 
         cin >> decision; 
@@ -314,32 +327,21 @@ void scoreboardControls()
         else if (decision == 'o' || decision == 'O')
         {
           cout <<"Home Team Status \n";
-          cout << "Team 1 is the HOME team? (0 = yes, 1 - no).\n";
+          cout << "Select the \"HOME\" team.  (Enter \"0\" for Team 1 or  \"1\" for Team 2).\n";
           cin >> homeStatus;
               if(homeStatus == 0)
+              {
               tOneMain.setHome_status(true);
-                          
+              tTwoMain.setHome_status(false);
+              }           
               else
               tOneMain.setHome_status(false);
+              tTwoMain.setHome_status(true);
                            
           sleep(3); // 3 second pause
         }
 
-        else if (decision == 'p' || decision == 'P')
-        {
-          cout <<"Home Team Status \n";
-          cout << "Team 2 is the HOME team? (0 = yes, 1 - no).\n";
-          cin >> homeStatus;
-              if(homeStatus == 0)
-              tTwoMain.setHome_status(true);
-                          
-              else
-              tTwoMain.setHome_status(false);
-                           
-          sleep(3); // 3 second pause
-        }
-        
-        
+             
         
         else if(decision == 'x' || decision == 'X')
           {
