@@ -101,20 +101,12 @@ class Scoreboard
         cout << "Team 2 Timeouts: " << team2.getTimeout_count() << "\n";
         cout << "Down: "<< down << endl;
         cout << "Yards To Go: " << yards << endl;
-
-        //dealing with Boolean data
+        cout << "Possession: "; 
         if(poss == true)
-        {
-           cout << "--------------------" << endl;
-          cout << "Home team has the ball" << endl; 
-           cout << "--------------------" << endl;
-        }
+              cout << "\n Home has the ball. " << endl;
         else
-        {
-           cout << "--------------------" << endl;
-          cout << "Visiting team has the ball" << endl; 
-           cout << "--------------------" << endl;
-        }
+              cout << "\n Visitor has the ball." << endl;
+        
 
     }
 };
@@ -255,11 +247,19 @@ void scoreboardControls()
         
         else if (decision == 'j' || decision == 'J')
         {
-          cout << "Change possession of ball. \n";
-          cout << "Enter \"true\" for Home or \"false\" for Visitor. \n";
+          cout <<"Change Possession \n";
+          cout << "Who has possesion? (0 = home, 1 - visitor).\n";
           cin >> updatePossession;
-          s.setPoss(updatePossession);
-          cout << "\nUpdating Ball Possession..." << s.getPoss() << endl;
+              if(updatePossession == 0)
+              {
+              s.setPoss(true);
+              cout << "\n Home has the ball. " << endl;
+              }
+              else
+              {
+                s.setPoss(false);
+                cout << "\n Visitor has the ball." << endl;
+              }
           sleep(3); // 3 second pause
         }
 
