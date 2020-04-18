@@ -46,7 +46,33 @@ class Team
     
 };
 
+class Scoreboard
+{
+  private:
+    bool poss; //true = home, false = visitor 
+    int quarter; // which quarter
+    int down; //down
+    int yards; // yards to go for first down
 
+  public:
+    Scoreboard() // default constructor
+    {
+      poss = true; // home team has the ball initially
+      quarter = 1; // initial quater
+      down = 1; //initial down
+      yards = 10; // initial yards
+    }
+    void setPoss(bool po){poss = po;}
+    void setQuarter(int q){quarter = q;}
+    void setDown(int d){down = d;}
+    void setYards(int y){yards = y;}
+
+    bool getPoss()const{return poss;}
+    int getQuarter()const{return quarter;} 
+    int getDown()const{return down;}
+    int getYards()const{return yards;}
+
+};
 
 
 int main() 
