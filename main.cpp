@@ -8,17 +8,18 @@ Program that keeps track of various objects and variables in a Football Scoreboa
 #include <iostream>
 #include <unistd.h> //for sleep command
 #include <string>
-#include <colormod.h>
+#include <iomanip>
+#include "colormod.h"
 using namespace std;
 
 Color::Modifier red(Color::FG_RED);
 Color::Modifier blue(Color::FG_BLUE);
 Color::Modifier green(Color::FG_GREEN);
-Color::Modifier redgb(Color::BG_RED);
+Color::Modifier def(Color::FG_DEFAULT);
+Color::Modifier redbg(Color::BG_RED);
 Color::Modifier greenbg(Color::BG_GREEN);
 Color::Modifier bluebg(Color::BG_BLUE);
-Color::Modifier def(Color::FG_DEFAULT);
-
+Color::Modifier defbg(Color::BG_DEFAULT);
 
 
 class Team
@@ -64,6 +65,7 @@ class Scoreboard
     int quarter; // which quarter
     int down; //down
     int yards; // yards to go for first down
+    double time; //Time place holder
     Team team1; //double dot notation to get its data
     Team team2; //double dot notation to get its data
 
@@ -74,11 +76,13 @@ class Scoreboard
       quarter = 1; // initial quater
       down = 1; //initial down
       yards = 10; // initial yards
+      time = 0.0; 
     }
     void setPoss(bool po){poss = po;}
     void setQuarter(int q){quarter = q;}
     void setDown(int d){down = d;}
     void setYards(int y){yards = y;}
+    void setTime(double t){time = t;}
     void setTeam1(Team t1) { team1 = t1; } //remember when the object changes
     void setTeam2(Team t2) {team2 = t2; } //remember when the object changes
 
@@ -86,6 +90,7 @@ class Scoreboard
     int getQuarter()const{return quarter;} 
     int getDown()const{return down;}
     int getYards()const{return yards;}
+    double getTime()const{return time;}
     Team getTeam1() const { return team1; }
     Team getTeam2()  const { return team2; }
 
@@ -94,9 +99,11 @@ class Scoreboard
         system("clear"); //clear the screen 
         
         //Show Scoreboard
-        cout << "********************" << endl;
-        cout << "Scoreboard Internal\n";
-        cout << "********************" << "\n" << endl;
+        cout << "\t \t \t \t \t \t \t \t \t" << "********************" << endl;
+        cout << "\t \t \t \t \t \t \t \t \t" << "Football Scoreboard \n";
+        cout << "\t \t \t \t \t \t \t \t \t" << "********************" << "\n" << endl;
+        cout << "\t \t \t \t \t \t \t \t \t" << "TIME:  " << setprecision(6)<< getTime() << "\n";
+
         cout << "Team 1 Name: " << team1.getName() << endl;
         cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
         cout << "Team 1 Coach: "  << team1.getCoach_name() << endl;
@@ -151,6 +158,7 @@ void scoreboardControls()
   int downs;
   int yards;
   bool homeStatus;
+  double setTime = 15.00;
 
   s.setTeam1(tOneMain);
   s.setTeam2(tTwoMain);
@@ -164,7 +172,7 @@ void scoreboardControls()
       s.showScoreboard();
 
       //Menu options
-      cout << "\n\n===================\n";
+      cout << green << "\n\n=========================\n";
         cout << "Menu: " << endl; 
         cout << "A. Update Team 1 Score" << endl; 
         cout << "B. Update Team 1 Name" << endl; 
@@ -181,9 +189,10 @@ void scoreboardControls()
         cout << "M. Update Down" << endl;
         cout << "N. Update Yards" << endl;
         cout << "O. Select \"Home\" status" << endl;
+        cout << "T. Enter Time " << endl;
        
 
-        cout << "X. To Exit" << endl; 
+        cout << "X. To Exit" << def << endl; 
         cin >> decision; 
 
         if(decision == 'a' || decision == 'A')
@@ -338,6 +347,16 @@ void scoreboardControls()
               tOneMain.setHome_status(false);
               tTwoMain.setHome_status(true);
                            
+          sleep(3); // 3 second pause
+        }
+
+        else if (decision == 't'|| decision == 'T')
+        {
+          cout << "Set Time. \n";
+          cout << "Enter Time >\n ";
+          cin >> setTime;
+          s.setTime(setTime);
+          cout << "\nUpdating Time..." << s.getTime() << endl;
           sleep(3); // 3 second pause
         }
 
