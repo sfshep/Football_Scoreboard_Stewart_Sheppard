@@ -1,4 +1,4 @@
-/* 
+ /* 
 Assignment 4 - Football Scoreboard
 Student: Stewart Sheppard Date: 4-15-20
 Dr. Tyson McMillian COCS 1437-58000
@@ -15,6 +15,7 @@ using namespace std;
 Color::Modifier red(Color::FG_RED);
 Color::Modifier blue(Color::FG_BLUE);
 Color::Modifier green(Color::FG_GREEN);
+Color::Modifier yellow(Color::FG_YELLOW);
 Color::Modifier def(Color::FG_DEFAULT);
 Color::Modifier redbg(Color::BG_RED);
 Color::Modifier greenbg(Color::BG_GREEN);
@@ -99,26 +100,30 @@ class Scoreboard
         system("clear"); //clear the screen 
         
         //Show Scoreboard
-        cout << "\t \t \t \t \t \t \t \t \t" << "********************" << endl;
-        cout << "\t \t \t \t \t \t \t \t \t" << "Football Scoreboard \n";
-        cout << "\t \t \t \t \t \t \t \t \t" << "********************" << "\n" << endl;
-        cout << "\t \t \t \t \t \t \t \t \t" << "TIME:  " << setprecision(6)<< getTime() << "\n";
+        cout << green << setw(54) << "********************" << endl;
+        cout << setw(55) << "Football Scoreboard \n";
+        cout << setw(54) << "********************" << def << endl;
+        cout << setw(40) << red << "TIME: 00:0" << setprecision(6)<< getTime() << def << "\n";
+        cout << "\n\n"<< endl;
+        cout <<  team1.getHome_city() <<" "<< team1.getName() << setw(5) << red << team1.getScore() << def << setw(50) << team2.getHome_city() << " "<< team2.getName() << setw(5) << red << team2.getScore() << def << endl;
+        //cout << "Team 1 Name: " << team1.getName() << endl;
+       // cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
+        cout << "Coach: "  << team1.getCoach_name() << setw(55) <<  " Coach: "  << team2.getCoach_name() << endl;
+       
+        cout << "Timeouts: " << team1.getTimeout_count() << setw(70) << "Timeouts: " << team2.getTimeout_count() << "\n";;
+        cout << setw(54) << "--------------------" << endl;
+        cout << setw(48) << "Quarter: " << red << quarter << def << endl; 
+        cout << setw(54) << "--------------------" << endl;
+        //cout << "Team 2 Name: " << team2.getName() << endl;
+        //cout << "Team 2 City: " << team2.getHome_city() << "\n" << endl;
+        //cout << "Team 2 Coach: "  << team2.getCoach_name() << endl;
+        
+        //cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
+        //cout << "Team 2 Timeouts: " << team2.getTimeout_count() << "\n";
 
-        cout << "Team 1 Name: " << team1.getName() << endl;
-        cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
-        cout << "Team 1 Coach: "  << team1.getCoach_name() << endl;
-        cout << "Team 1 Score: " << team1.getScore() << "\n" << endl;
-        cout << "Team 1 Timeouts: " << team1.getTimeout_count() << "\n";
-        cout << "--------------------" << endl;
-        cout << "Quarter: " << quarter << endl; 
-        cout << "--------------------" << endl;
-        cout << "Team 2 Name: " << team2.getName() << endl;
-        cout << "Team 2 City: " << team2.getHome_city() << "\n" << endl;
-        cout << "Team 2 Coach: "  << team2.getCoach_name() << endl;
-        cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
-        cout << "Team 2 Timeouts: " << team2.getTimeout_count() << "\n";
-        cout << "Down: "<< down << endl;
-        cout << "Yards To Go: " << yards << endl;
+        cout << setw(30) << "Down: "<< down << "Yards To Go: " << yards << endl;
+        cout << setw(54) << "--------------------" << endl;
+        
         cout << "Possession: "; 
         if(poss == true)// Ball possession status.
               cout << "\n Home has the ball. " << endl;
@@ -127,13 +132,13 @@ class Scoreboard
         cout << "**************" << endl;
         if (team1.getHome_status() == true)
               {
-                cout << "Team 1 Status: HOME  " << endl;
-                cout << "Team 2 Status: VISITOR "<< endl;
+                cout << team1.getName() << " Status: HOME  " << endl;
+                cout << team2.getName() << " Status: VISITOR "<< endl;
               }
         else
               {
-                cout << "Team 1 Status: VISITOR " << endl;
-                cout << "Team 2 Status: HOME " << endl;
+                cout << team1.getName() << " Status: VISITOR " << endl;
+                cout << team1.getName() << " Status: HOME " << endl;
               }
         cout << "**************" << endl;
         
@@ -336,7 +341,7 @@ void scoreboardControls()
         else if (decision == 'o' || decision == 'O')
         {
           cout <<"Home Team Status \n";
-          cout << "Select the \"HOME\" team.  (Enter \"0\" for Team 1 or  \"1\" for Team 2).\n";
+          cout << "Select the \"HOME\" team.  (Enter \"0\" for" << tOneMain.getName() << " or  \"1\" for " << tTwoMain.getName() << ").\n";
           cin >> homeStatus;
               if(homeStatus == 0)
               {
