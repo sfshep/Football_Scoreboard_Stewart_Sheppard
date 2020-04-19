@@ -108,9 +108,9 @@ class Scoreboard
         cout <<  team1.getHome_city() <<" "<< team1.getName() << setw(5) << red << team1.getScore() << def << setw(50) << team2.getHome_city() << " "<< team2.getName() << setw(5) << red << team2.getScore() << def << endl;
         //cout << "Team 1 Name: " << team1.getName() << endl;
        // cout << "Team 1 City: " << team1.getHome_city() << "\n" << endl;
-        cout << "Coach: "  << team1.getCoach_name() << setw(55) <<  " Coach: "  << team2.getCoach_name() << endl;
+        cout << "Coach: "  << blue << team1.getCoach_name()<< def << setw(55) <<  " Coach: "  << blue << team2.getCoach_name() << def << endl;
        
-        cout << "Timeouts: " << team1.getTimeout_count() << setw(70) << "Timeouts: " << team2.getTimeout_count() << "\n";;
+        cout << "Timeouts: " << red <<  team1.getTimeout_count() << def << setw(70) << "Timeouts: " << red << team2.getTimeout_count() << def << "\n";;
         cout << setw(54) << "--------------------" << endl;
         cout << setw(48) << "Quarter: " << red << quarter << def << endl; 
         cout << setw(54) << "--------------------" << endl;
@@ -121,26 +121,26 @@ class Scoreboard
         //cout << "Team 2 Score:" << team2.getScore() << "\n" << endl;
         //cout << "Team 2 Timeouts: " << team2.getTimeout_count() << "\n";
 
-        cout << setw(30) << "Down: "<< down << "Yards To Go: " << yards << endl;
+        cout << setw(38) << "Down: "<< red << down << def << green << "    ||    " << def << "Yards To Go: " << red << yards << def << endl;
         cout << setw(54) << "--------------------" << endl;
         
-        cout << "Possession: "; 
+        cout << setw(42) <<  "Possession: "; 
         if(poss == true)// Ball possession status.
-              cout << "\n Home has the ball. " << endl;
+              cout << red << "Home" << def << " has the ball. " << endl;
         else
-              cout << "\n Visitor has the ball." << endl;
-        cout << "**************" << endl;
+              cout << red << "Visitor" << def << " has the ball. " << endl;
+        cout << setw(54) << "--------------------" << endl;
         if (team1.getHome_status() == true)
               {
-                cout << team1.getName() << " Status: HOME  " << endl;
-                cout << team2.getName() << " Status: VISITOR "<< endl;
+                cout << setw (46) << team1.getName() << " Status: HOME  " << endl;
+                cout << setw (46) << team2.getName() << " Status: VISITOR "<< endl;
               }
         else
               {
-                cout << team1.getName() << " Status: VISITOR " << endl;
-                cout << team1.getName() << " Status: HOME " << endl;
+                cout << setw (46) << team1.getName() << " Status: VISITOR " << endl;
+                cout << setw (46) << team1.getName() << " Status: HOME " << endl;
               }
-        cout << "**************" << endl;
+        
         
         
 
@@ -177,7 +177,10 @@ void scoreboardControls()
       s.showScoreboard();
 
       //Menu options
-      cout << green << "\n\n=========================\n";
+      cout << "\n \n \n" << green;
+      for (int i = 0; i <= 100; i++)
+          {cout << "=";}
+        cout << "\n";
         cout << "Menu: " << endl; 
         cout << "A. Update Team 1 Score" << endl; 
         cout << "B. Update Team 1 Name" << endl; 
@@ -292,7 +295,7 @@ void scoreboardControls()
         else if (decision == 'j' || decision == 'J')
         {
           cout <<"Change Possession \n";
-          cout << "Who has possesion? (0 = home, 1 - visitor).\n";
+          cout << "Who has possesion? (0 - home, 1 - visitor).\n";
           cin >> updatePossession;
               if(updatePossession == 0)
               {
@@ -327,21 +330,30 @@ void scoreboardControls()
           sleep(3); // 3 second pause
         }
 
-        
+        else if (decision == 'm'|| decision == 'M')
+        {
+          cout << "Update the Downs. \n";
+          cout << "Enter number Down number." ;
+          cin >> downs;
+          s.setDown(downs);
+          cout << "\nUpdating Downs..." << s.getYards() << endl;
+          sleep(3); // 3 second pause
+        }
+
         else if (decision == 'n'|| decision == 'N')
         {
           cout << "Update the Yards \"To Go\". \n";
           cout << "Enter number of Yards\"To Go\"  > ";
           cin >> yards;
           s.setYards(yards);
-          cout << "\nUpdating Quarter..." << s.getYards() << endl;
+          cout << "\nUpdating Yards..." << s.getYards() << endl;
           sleep(3); // 3 second pause
         }
         
         else if (decision == 'o' || decision == 'O')
         {
           cout <<"Home Team Status \n";
-          cout << "Select the \"HOME\" team.  (Enter \"0\" for" << tOneMain.getName() << " or  \"1\" for " << tTwoMain.getName() << ").\n";
+          cout << "Select the \"HOME\" team.  (Enter \"0\" for " << tOneMain.getName() << " or  \"1\" for " << tTwoMain.getName() << ").\n";
           cin >> homeStatus;
               if(homeStatus == 0)
               {
@@ -369,7 +381,7 @@ void scoreboardControls()
         
         else if(decision == 'x' || decision == 'X')
           {
-            cout << "\nEXIT.  GO TWU PIONEERS!  STILL UNDEFEATED!!" << endl;
+            cout << "\nEXITING!!!\n" << red << "GO TWU PIONEERS!" << def << greenbg << "STILL UNDEFEATED!!" << defbg << endl;
           }
             
           s.setTeam1(tOneMain); // set Team 1 to latest data
