@@ -1,9 +1,15 @@
  /* 
-Assignment 4 - Football Scoreboard
-Student: Stewart Sheppard Date: 4-15-20
-Dr. Tyson McMillian COCS 1437-58000
-Program that keeps track of various objects and variables in a Football Scoreboard.
+   Assignment 4 - Football Scoreboard 
+   Stewart Sheppard
+   April  18, 2020
+   Dr. Tyson McMillan
+   Tarrant County College
+   COSC 1437-58000
+   Text Editor: Repl.it
+   Program that keeps track of various objects and variables in a Football Scoreboard.
+   Skills learned: working Object Orient Programming, getting and setting data, layout.
 */
+
 
 #include <iostream>
 #include <unistd.h> //for sleep command
@@ -63,7 +69,7 @@ class Scoreboard
 {
   private:
     bool poss; //true = home, false = visitor 
-    int quarter; // which quarter
+    int quarter; // which quarterx
     int down; //down
     int yards; // yards to go for first down
     double time; //Time place holder
@@ -381,7 +387,7 @@ void scoreboardControls()
         
         else if(decision == 'x' || decision == 'X')
           {
-            cout << "\nEXITING!!!\n" << red << "GO TWU PIONEERS!" << def << greenbg << "STILL UNDEFEATED!!" << defbg << endl;
+            cout << "\nEXITING!!!\n" << red << "GO T.W.U. PIONEERS!  " << def <<  red << greenbg  << "STILL UNDEFEATED!!" << defbg << def << endl;
           }
             
           s.setTeam1(tOneMain); // set Team 1 to latest data
